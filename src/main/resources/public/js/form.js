@@ -15,7 +15,8 @@ $('form button').on('click', function(e) {
         method:'POST',
         dataType:'text',
         data:{
-            to:$('#to').val()
+            to: $('#to').val(),
+            body: $('#message-body').val()
         },
         success: function(data) {
             showFlash(data);

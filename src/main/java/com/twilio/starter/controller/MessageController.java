@@ -11,15 +11,15 @@ public class MessageController {
     private static final String TWILIO_PHONE_NUMBER = System.getenv("TWILIO_PHONE_NUMBER");
 
     public static Route handlePost = (Request request, Response response) -> {
-        // Get POST data
         String to = request.queryParams("to");
+        String textToBeSentInMessage = request.queryParams("body");
 
-        Message call = Message.creator(
+        Message messageResource = Message.creator(
                 new com.twilio.type.PhoneNumber(to),
                 new com.twilio.type.PhoneNumber(TWILIO_PHONE_NUMBER),
-                "Good luck on your Twilio quest!")
+                textToBeSentInMessage)
                 .create();
 
-        return "Message incoming!";
+        return "No error handling yet, so I hope I actually receive a text. Message SID = " + messageResource.getSid();
     };
 }
